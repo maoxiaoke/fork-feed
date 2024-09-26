@@ -16,6 +16,9 @@ export interface Item {
     published?: Date;
     copyright?: string;
     extensions?: Extension[];
+    extra?: {
+        [key: string]: ExtraItem;
+    };
 }
 export interface Enclosure {
     url: string;
@@ -61,3 +64,4 @@ export interface Namespace {
     name: string;
     url: string;
 }
+export type ExtraItem = any;

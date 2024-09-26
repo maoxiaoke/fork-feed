@@ -22,6 +22,8 @@ export interface Item {
   copyright?: string;
 
   extensions?: Extension[];
+
+  extra?: { [key: string]: ExtraItem };
 }
 
 export interface Enclosure {
@@ -75,3 +77,5 @@ export interface Namespace {
   name: string;
   url: string;
 }
+
+export type ExtraItem = any;

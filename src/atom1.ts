@@ -18,8 +18,8 @@ export default (ins: Feed) => {
       id: options.id,
       title: options.title,
       updated: options.updated ? options.updated.toISOString() : new Date().toISOString(),
-      generator: sanitize(options.generator || generator)
-    }
+      generator: sanitize(options.generator || generator),
+    },
   };
 
   if (options.author) {
@@ -81,6 +81,10 @@ export default (ins: Feed) => {
 
   base.feed.entry = [];
 
+  for (const key in ins.extra) {
+    base.feed[key] = ins.extra[key];
+  }
+
   /**************************************************************************
    * "entry" nodes
    *************************************************************************/
@@ -93,7 +97,7 @@ export default (ins: Feed) => {
       title: { _attributes: { type: "html" }, _cdata: item.title },
       id: sanitize(item.id || item.link),
       link: [{ _attributes: { href: sanitize(item.link) } }],
-      updated: item.date.toISOString()
+      updated: item.date.toISOString(),
     };
 
     //
@@ -160,6 +164,12 @@ export default (ins: Feed) => {
       entry.rights = item.copyright;
     }
 
+    if (item.extra) {
+      for (const key in item.extra) {
+        entry[key] = item.extra[key];
+      }
+    }
+
     base.feed.entry.push(entry);
   });
 
@@ -173,7 +183,7 @@ export default (ins: Feed) => {
 const formatAuthor = (author: Author) => {
   const { name, email, link } = author;
 
-  const out: { name?: string, email?: string, uri?: string } = { name };
+  const out: { name?: string; email?: string; uri?: string } = { name };
   if (email) {
     out.email = email;
   }

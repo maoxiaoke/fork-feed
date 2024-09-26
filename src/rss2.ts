@@ -51,7 +51,7 @@ export default (ins: Feed) => {
     base.rss.channel.image = {
       title: { _text: options.title },
       url: { _text: options.image },
-      link: { _text: sanitize(options.link) }
+      link: { _text: sanitize(options.link) },
     };
   }
 
@@ -104,9 +104,13 @@ export default (ins: Feed) => {
     base.rss.channel["atom:link"] = {
       _attributes: {
         href: sanitize(options.hub),
-        rel: "hub"
-      }
+        rel: "hub",
+      },
     };
+  }
+
+  for (const key in ins.extra) {
+    base.rss.channel[key] = ins.extra[key];
   }
 
   /**
@@ -115,7 +119,6 @@ export default (ins: Feed) => {
   ins.extensions.map((extension: Extension) => {
     base.rss.channel[extension.name] = extension.objects;
   });
-
 
   /**
    * Channel Items
@@ -199,6 +202,12 @@ export default (ins: Feed) => {
 
     if (entry.video) {
       item.enclosure = formatEnclosure(entry.video, "video");
+    }
+
+    if (entry.extra) {
+      for (const key in entry.extra) {
+        item[key] = entry.extra[key];
+      }
     }
 
     /**

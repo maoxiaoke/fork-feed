@@ -1,6 +1,7 @@
 {
-  "name": "feed",
-  "version": "4.2.2",
+  "name": "@nzha/feed",
+  "version": "5.0.1",
+  "private": false,
   "description": "Feed is a RSS, Atom and JSON feed generator for Node.js, making content syndication simple and intuitive!",
   "homepage": "https://github.com/jpmonette/feed",
   "author": "Jean-Philippe Monette <contact@jpmonette.net>",
@@ -9,7 +10,7 @@
   "types": "lib/feed.d.ts",
   "scripts": {
     "build": "rm -rf lib/ && mkdir lib && tsc",
-    "prepublish": "yarn build",
+    "prepublish": "npm run build",
     "test": "jest --silent",
     "test-travis": "jest --coverage"
   },
@@ -51,6 +52,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jpmonette/feed.git"
-  },
-  "packageManager": "yarn@3.4.1"
+  }
 }
