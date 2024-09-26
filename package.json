@@ -2,7 +2,7 @@
   "name": "@nzha/feed",
   "version": "5.0.1",
   "private": false,
-  "description": "Feed is a RSS, Atom and JSON feed generator for Node.js, making content syndication simple and intuitive!",
+  "description": "A forked version of feed, which is a RSS, Atom and JSON feed generator for Node.js, making content syndication simple and intuitive!",
   "homepage": "https://github.com/jpmonette/feed",
   "author": "Jean-Philippe Monette <contact@jpmonette.net>",
   "license": "MIT",
